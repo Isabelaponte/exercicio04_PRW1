@@ -1,0 +1,11 @@
+.lembretes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Três colunas de largura igual */
+    gap: 2rem;
+}
+
+.card-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
