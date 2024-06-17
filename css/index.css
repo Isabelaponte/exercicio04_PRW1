@@ -18,3 +18,14 @@ button {
 form > div:nth-of-type(3) {
     margin-top: 2rem;
 }
+
+.hidden {
+    display: none!important;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
