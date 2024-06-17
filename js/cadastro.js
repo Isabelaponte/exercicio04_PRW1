@@ -28,11 +28,6 @@ async function checkUserLoggedIn() {
   }
 }
 
-function showForm() {
-  document.getElementById("loadingIndicator").classList.add("hidden");
-  document.getElementById("loginFormContainer").classList.remove("hidden");
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   checkUserLoggedIn();
 
