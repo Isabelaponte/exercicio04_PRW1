@@ -1,4 +1,4 @@
-import { checkUserLoggedIn, baseURL } from "./index.js";
+import { checkUserLoggedIn, baseURL } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   checkUserLoggedIn();
