@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
           window.location.href = "../pages/lembretes/lembretes.html";
         } else {
           const errorData = await response.json();
-          alert(`Erro ao cadastrar: ${errorData.message}`);
+          console.log("errorData", errorData);
+          alert(`Erro ao cadastrar: ${errorData.msg}`);
         }
       } catch (error) {
         console.error("Erro ao realizar o login:", error);

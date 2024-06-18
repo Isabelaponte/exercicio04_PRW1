@@ -35,8 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("Cadastro realizado com sucesso!");
           window.location.href = "./index.html";
         } else {
-          const errorData = await response.json();
-          alert(`Erro ao cadastrar: ${errorData.message}`);
+          alert(`Erro ao cadastrar: ${errorData.msg}`);
         }
       } catch (error) {
         console.error("Erro ao realizar o cadastro:", error);
