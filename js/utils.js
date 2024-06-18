@@ -40,3 +40,11 @@ export async function checkUserLoggedIn() {
     }
   }
 }
+
+export function formatDate(dateString) {
+  const [date, time] = dateString.split(" ")
+
+  const [year, month, day] = date.split("-")
+
+  return `${day}/${month}/${year}`
+}

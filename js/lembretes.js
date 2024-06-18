@@ -1,4 +1,4 @@
-import { baseURL, checkUserLoggedIn } from "./utils.js";
+import { baseURL, checkUserLoggedIn, formatDate } from "./utils.js";
 
 async function getLembretes() {
   checkUserLoggedIn();
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const cardDate = document.createElement("p");
     cardDate.classList.add("card-date");
-    cardDate.textContent = lembrete.data;
+    cardDate.textContent = formatDate(lembrete.data);
 
     const cardActionEdit = document.createElement("a");
     cardActionEdit.classList.add("btn", "btn-warning");
