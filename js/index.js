@@ -1,22 +1,25 @@
-export const baseURL = "https://ifsp.ddns.net/webservices/lembretes/";
+export const baseURL = "https://ifsp.ddns.net/webservices/lembretes";
 
 export async function checkUserLoggedIn() {
   const token = localStorage.getItem("jwt");
 
   if (token) {
     try {
-      const response = await fetch(`${baseURL}usuario/check`, {
+      const response = await fetch(`${baseURL}/usuario/check`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.msg === "Você está logado") {
-          window.location.href = "../pages/lembretes/lembretes.html";
-        } 
+      const data = response.json();
+
+      if (data.msg === "Você está logado") {
+        window.location.href = "../pages/lembretes/lembretes.html";
       }
+
+      localStorage.removeItem("jwt");
+      window.location.href = "./index.html?loggedOut=true";
+
 
     } catch (error) {
       console.error("Erro ao verificar o login:", error.message);
@@ -24,12 +27,19 @@ export async function checkUserLoggedIn() {
   } else {
     document.getElementById("loadingIndicator").classList.add("hidden");
     document.getElementById("main").classList.remove("hidden");
+    if (!window.location.pathname.includes("index.html")) {
+      window.location.href = "./index.html";
+    }
   }
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
   checkUserLoggedIn();
+
+  if (window.location.search.includes("loggedOut=true")) {
+    alert("Sua sessão foi encerrada. Por favor, faça login novamente.");
+    window.location.href = "./index.html";
+  }
 
   document
     .getElementById("loginForm")
@@ -42,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Dados enviados:", { email: email, senha: senha });
 
       try {
-        const response = await fetch(`${baseURL}usuario/login`, {
+        const response = await fetch(`${baseURL}/usuario/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

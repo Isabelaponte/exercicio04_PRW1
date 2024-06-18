@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Dados enviados:", { email: email, senha: senha });
 
       try {
-        const response = await fetch(`${baseURL}usuario/signup`, {
+        const response = await fetch(`${baseURL}/usuario/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
