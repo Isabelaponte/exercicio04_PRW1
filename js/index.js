@@ -1,6 +1,6 @@
-let baseURL = "https://ifsp.ddns.net/webservices/lembretes/";
+export const baseURL = "https://ifsp.ddns.net/webservices/lembretes/";
 
-async function checkUserLoggedIn() {
+export async function checkUserLoggedIn() {
   const token = localStorage.getItem("jwt");
 
   if (token) {
@@ -16,14 +16,14 @@ async function checkUserLoggedIn() {
         if (data.msg === "Você está logado") {
           window.location.href = "../pages/lembretes/lembretes.html";
         } 
-      } else {
-        document.getElementById("loadingIndicator").classList.add("hidden");
-        document.getElementById("main").classList.remove("hidden");
       }
 
     } catch (error) {
       console.error("Erro ao verificar o login:", error.message);
     }
+  } else {
+    document.getElementById("loadingIndicator").classList.add("hidden");
+    document.getElementById("main").classList.remove("hidden");
   }
 }
 
