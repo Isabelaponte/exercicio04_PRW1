@@ -18,6 +18,8 @@ async function getLembretes() {
 async function deleteLembrete(id) {
   checkUserLoggedIn();
 
+  // todo: fazer tratamento de exceção
+
   const response = await fetch(`${baseURL}/lembrete/${id}`, {
     method: "DELETE",
     headers: {

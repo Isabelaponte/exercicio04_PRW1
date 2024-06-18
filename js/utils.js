@@ -41,6 +41,47 @@ export async function checkUserLoggedIn() {
   }
 }
 
+// todo: mover todas as funções de lembretes para um arquivo único separado
+
+export async function getLembreteById(id) {
+  checkUserLoggedIn();
+
+  try {
+    const response = await fetch(`${baseURL}/lembrete/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    });
+
+    const lembrete = await response.json()
+    return lembrete
+  } catch (error) {
+    console.error("Erro ao obter lembrete:", error.message);
+  }
+}
+
+export async function updateLembrete(id, texto) {
+  checkUserLoggedIn();
+
+  try {
+    const response = await fetch(`${baseURL}/lembrete/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify({
+        texto: texto,
+      }),
+    });
+
+    const lembrete = await response.json()
+    return lembrete
+  } catch (error) {
+    console.error("Erro ao atualizar lembrete:", error.message);
+  }
+}
+
 export function formatDate(dateString) {
   const [date, time] = dateString.split(" ")
 
