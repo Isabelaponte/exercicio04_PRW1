@@ -29,3 +29,9 @@ form > div:nth-of-type(3) {
     align-items: center;
     height: 100vh;
 }
+
+.smallLoading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
