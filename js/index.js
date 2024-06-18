@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (window.location.search.includes("loggedOut=true")) {
     alert("Sua sessão foi encerrada. Por favor, faça login novamente.");
-    window.location.href = "./index.html";
+    window.location.href = "/pages/index.html";
   }
 
   document

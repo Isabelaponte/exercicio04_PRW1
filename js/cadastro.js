@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           localStorage.setItem("jwt", token);
           alert("Cadastro realizado com sucesso!");
-          window.location.href = "./index.html";
+          window.location.href = "/pages/index.html";
         } else {
           alert(`Erro ao cadastrar: ${errorData.msg}`);
         }

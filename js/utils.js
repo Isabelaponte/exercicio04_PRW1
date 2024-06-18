@@ -13,24 +13,30 @@ export async function checkUserLoggedIn() {
         },
       });
 
-      const data = response.json();
+      const data = await response.json();
 
       if (data.msg === "Você está logado") {
-        window.location.href = "../pages/lembretes/lembretes.html";
+          if (!window.location.pathname.includes("lembretes")) {
+            window.location.href = "/pages/lembretes/lembretes.html";
+          }
+          return;
       }
 
       localStorage.removeItem("jwt");
-      window.location.href = "./index.html?loggedOut=true";
-
+      window.location.href = "/pages/index.html?loggedOut=true";
 
     } catch (error) {
       console.error("Erro ao verificar o login:", error.message);
     }
   } else {
-    document.getElementById("loadingIndicator").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
-    if (!publicRoutes.includes(window.location.pathname)) {
-      window.location.href = "./index.html";
+    const loadingIndicator = document.getElementById("loadingIndicator");
+    if (loadingIndicator) loadingIndicator.classList.add("hidden");
+    const main = document.getElementById("main");
+    if (main) main.classList.remove("hidden");
+    
+    const route = window.location.pathname.split("/");
+    if (!publicRoutes.includes(route[route.length - 1])) {
+      window.location.href = "/pages/index.html";
     }
   }
 }
