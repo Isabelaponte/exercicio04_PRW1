@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     cardDate.classList.add("card-date");
     cardDate.textContent = formatDate(lembrete.data);
 
+    const options = document.createElement("div");
+    options.classList.add("options");
+
     const cardActionEdit = document.createElement("a");
     cardActionEdit.classList.add("btn", "btn-warning");
     cardActionEdit.href = "./editar_lembrete.html?id=" + lembrete.id;
@@ -78,13 +81,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.querySelector(".lembretes").appendChild(noLembretes);
           }
         }
-      })
+      });
     });
+
+    options.appendChild(cardActionEdit);
+    options.appendChild(cardActionDelete);
 
     cardBody.appendChild(cardText);
     cardBody.appendChild(cardDate);
-    cardBody.appendChild(cardActionEdit);
-    cardBody.appendChild(cardActionDelete);
+    cardBody.appendChild(options);
 
     card.appendChild(cardBody);
 

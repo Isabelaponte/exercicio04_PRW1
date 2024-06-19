@@ -9,3 +9,20 @@
     font-size: 0.9rem;
     margin-top: 0.5rem;
 }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.options {
+    display: flex;
+    gap: 4px;
+}
+
+@media (max-width: 820px) {
+    .options {
+        flex-direction: column;
+    }
+}

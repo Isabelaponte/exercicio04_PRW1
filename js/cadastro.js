@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const email = document.getElementById("email").value;
       const senha = document.getElementById("senha").value;
 
-      console.log("Dados enviados:", { email: email, senha: senha });
-
       try {
         const response = await fetch(`${baseURL}/usuario/signup`, {
           method: "POST",
@@ -24,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
             senha: senha,
           }),
         });
-
-        console.log(response);
 
         if (response.ok) {
           const data = await response.json();

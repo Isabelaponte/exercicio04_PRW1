@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.getElementById("email").value;
       const senha = document.getElementById("senha").value;
 
-      console.log("Dados enviados:", { email: email, senha: senha });
-
       try {
         const response = await fetch(`${baseURL}/usuario/login`, {
           method: "POST",
@@ -30,8 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }),
         });
 
-        console.log(response);
-
         if (response.ok) {
           const data = await response.json();
           const token = data.token;
@@ -41,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
           window.location.href = "../pages/lembretes/lembretes.html";
         } else {
           const errorData = await response.json();
-          console.log("errorData", errorData);
           alert(`Erro ao cadastrar: ${errorData.msg}`);
         }
       } catch (error) {
