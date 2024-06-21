@@ -1,5 +1,15 @@
 import { checkUserLoggedIn, baseURL } from "./utils.js";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
   checkUserLoggedIn();
 
@@ -28,14 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
           const token = data.token;
 
           localStorage.setItem("jwt", token);
-          alert("Cadastro realizado com sucesso!");
-          window.location.href = "/pages/index.html";
+          Toast.fire({
+            title: "Cadastro realizado com sucesso!",
+            icon: "success"
+          }).then(() => {
+            window.location.href = "/pages/index.html";
+          })
         } else {
-          alert(`Erro ao cadastrar: ${errorData.msg}`);
+          Toast.fire({
+            title: `Erro ao cadastrar: ${errorData.msg}`,
+            icon: "error"
+          })
         }
       } catch (error) {
         console.error("Erro ao realizar o cadastro:", error);
-        alert("Erro ao realizar o cadastro. Tente novamente mais tarde.");
+        Toast.fire({
+          title: "Erro ao realizar o cadastro. Tente novamente mais tarde.",
+          icon: "error"
+        })
       }
     });
 });

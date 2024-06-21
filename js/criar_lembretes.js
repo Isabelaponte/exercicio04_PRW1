@@ -1,5 +1,14 @@
 import { checkUserLoggedIn, baseURL } from "./utils.js";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+
+});
+
 async function postLembretes(e){
   checkUserLoggedIn();
   e.preventDefault()
@@ -23,7 +32,12 @@ async function postLembretes(e){
       })
     })
     
-    window.location.href = "/pages/lembretes/lembretes.html"
+    Toast.fire({
+      title: "Lembrete criado com sucesso!",
+      icon: "success"
+    }).then(() => {
+      window.location.href = "/pages/lembretes/lembretes.html"
+    })
   }
   
   catch(erro){

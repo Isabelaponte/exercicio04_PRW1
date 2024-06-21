@@ -1,11 +1,23 @@
 import { checkUserLoggedIn, baseURL } from "./utils.js";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
   checkUserLoggedIn();
 
   if (window.location.search.includes("loggedOut=true")) {
-    alert("Sua sessão foi encerrada. Por favor, faça login novamente.");
-    window.location.href = "/pages/index.html";
+    Toast.fire({
+      title: "Sua sessão foi encerrada. Por favor, faça login novamente.",
+      icon: "error"
+    })
   }
 
   document
@@ -33,15 +45,25 @@ document.addEventListener("DOMContentLoaded", () => {
           const token = data.token;
 
           localStorage.setItem("jwt", token);
-          alert("Login realizado com sucesso!");
-          window.location.href = "../pages/lembretes/lembretes.html";
+          Toast.fire({
+            title: "Login realizado com sucesso!",
+            icon: "success"
+          }).then(() => {
+            window.location.href = "../pages/lembretes/lembretes.html";
+          })
         } else {
           const errorData = await response.json();
-          alert(`Erro ao cadastrar: ${errorData.msg}`);
+          Toast.fire({
+            title: `Erro ao cadastrar: ${errorData.msg}`,
+            icon: "error"
+          })
         }
       } catch (error) {
         console.error("Erro ao realizar o login:", error);
-        alert("Erro ao realizar o login. Tente novamente mais tarde.");
+        Toast.fire({  
+          title: "Erro ao realizar o login. Tente novamente mais tarde.",
+          icon: "error"
+        })
       }
     });
 });

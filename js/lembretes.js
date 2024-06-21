@@ -1,5 +1,14 @@
 import { baseURL, checkUserLoggedIn, formatDate } from "./utils.js";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+
+});
+
 async function getLembretes() {
   checkUserLoggedIn();
 
@@ -80,6 +89,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             document.querySelector(".lembretes").appendChild(noLembretes);
           }
+
+          Toast.fire({
+            title: "Lembrete excluído com sucesso!",
+            icon: "success"
+          })
         }
       });
     });
